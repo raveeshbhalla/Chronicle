@@ -107,6 +107,7 @@ public class SqliteChronicle extends Chronicle {
 			do {
 				records.add(new EventModel(cursor));
 			} while (cursor.moveToNext());
+			cursor.close();
 		}
 		return records;
 	}
