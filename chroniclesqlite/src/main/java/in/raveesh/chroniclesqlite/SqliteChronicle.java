@@ -14,10 +14,9 @@ import java.util.List;
  * Created by Raveesh on 19/09/17.
  */
 
-public class SqliteChronicle implements Chronicle {
+public class SqliteChronicle extends Chronicle {
 
 	private DbHelper dbHelper;
-	private HashMap<String, List<EventOccurredListener>> allListeners;
 
 	public SqliteChronicle(Context context) {
 		dbHelper = new DbHelper(context);
@@ -34,12 +33,7 @@ public class SqliteChronicle implements Chronicle {
 		values.put(DbHelper.KEY_EVENT_NAME, event);
 		values.put(DbHelper.KEY_TIMESTAMP, timestamp);
 		dbHelper.insert(values);
-
-		if (allListeners != null && allListeners.containsKey(event)) {
-			for (EventOccurredListener eventOccurredListener : allListeners.get(event)) {
-				eventOccurredListener.eventOccurred(timestamp);
-			}
-		}
+		notifyEventOccurred(event, timestamp);
 	}
 
 	@Override
@@ -68,7 +62,7 @@ public class SqliteChronicle implements Chronicle {
 	@Override
 	public boolean hasDoneSince(String event, long timestamp) {
 		Cursor cursor = dbHelper.query(DbHelper.KEY_EVENT_NAME + "=? AND "
-				+ DbHelper.KEY_TIMESTAMP + " >?",
+						+ DbHelper.KEY_TIMESTAMP + " >?",
 				new String[]{event, String.valueOf(timestamp)});
 		boolean hasDone = !(cursor == null || cursor.getCount() == 0);
 		if (cursor != null) {
@@ -115,27 +109,5 @@ public class SqliteChronicle implements Chronicle {
 			} while (cursor.moveToNext());
 		}
 		return records;
-	}
-
-	@Override
-	public void addEventOccurredListener(String event, EventOccurredListener listener) {
-		if (allListeners == null) {
-			allListeners = new HashMap<>();
-		}
-		if (!allListeners.containsKey(event)) {
-			allListeners.put(event, new ArrayList<EventOccurredListener>());
-		}
-		List<EventOccurredListener> eventListeners = allListeners.get(event);
-		eventListeners.add(listener);
-	}
-
-	@Override
-	public void removeEventOccurredListener(String event, EventOccurredListener listener) {
-
-	}
-
-	@Override
-	public void removeAllEventOccurredListeners(String event) {
-
 	}
 }

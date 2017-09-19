@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
 		lastOccurred = findViewById(R.id.lastOccurred);
 		timesOccurred = findViewById(R.id.timesOccurred);
 
-		chronicle.addEventOccurredListener(EVENT, eventOccurredListener);
-
 		setLastOccurred(chronicle.timeSinceLastOccurence(EVENT));
 		setTimesOccurred(chronicle.timesDone(EVENT));
 
@@ -36,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
 				chronicle.did(EVENT);
 			}
 		});
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		chronicle.addEventOccurredListener(EVENT, eventOccurredListener);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		chronicle.removeAllEventOccurredListeners();
 	}
 
 	private EventOccurredListener eventOccurredListener = new EventOccurredListener() {
