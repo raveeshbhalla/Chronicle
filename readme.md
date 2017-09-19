@@ -15,7 +15,7 @@ Chronicle is designed to instead work like a service that stores occurrences of 
 
 The currently planned specification is shown below.
 
-````
+```
 public interface ChronicleSpec {
   void did(String event);
   void did(String event, long timestamp);
@@ -25,7 +25,8 @@ public interface ChronicleSpec {
   int timesDoneSince(String event, long timestamp);
   long timeSinceLastOccurence(String event);
   List<Record> allTimesDid(String event);
-}```
+}
+```
 
 Additionally, non-blocking methods and RxJava extensions for the specification are planned.
 
