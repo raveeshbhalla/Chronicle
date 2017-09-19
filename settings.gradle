@@ -1,1 +1,1 @@
-include ':demo', ':chronicle'
+include ':demo', ':chronicle', ':chroniclesqlite'

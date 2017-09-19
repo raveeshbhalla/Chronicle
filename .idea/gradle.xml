@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/chronicle" />
+            <option value="$PROJECT_DIR$/chroniclesqlite" />
             <option value="$PROJECT_DIR$/demo" />
           </set>
         </option>

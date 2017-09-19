@@ -2,7 +2,7 @@ package in.raveesh.chronicle;
 
 import java.util.List;
 
-public interface ChronicleSpec {
+public interface Chronicle {
 
 	/**
 	 * Method to mark if an event has been performed by a user
@@ -60,5 +60,11 @@ public interface ChronicleSpec {
 	 * @return List of Records for all occurences of the event
 	 */
 	List<Record> allTimesDid(String event);
+
+	void addEventOccurredListener(String event, EventOccurredListener listener);
+
+	void removeEventOccurredListener(String event, EventOccurredListener listener);
+
+	void removeAllEventOccurredListeners(String event);
 }
 

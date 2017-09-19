@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Chronicle.iml" filepath="$PROJECT_DIR$/Chronicle.iml" />
       <module fileurl="file://$PROJECT_DIR$/chronicle/chronicle.iml" filepath="$PROJECT_DIR$/chronicle/chronicle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chroniclesqlite/chroniclesqlite.iml" filepath="$PROJECT_DIR$/chroniclesqlite/chroniclesqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
     </modules>
   </component>
